@@ -6,8 +6,8 @@ public class Enemies {
     private int atk;
     private int def;
     private int hp;
-    private int lvl=1;
-    private EnemyType type;
+    private int lvl;
+    private final EnemyType type;
 
     /**
      * Creates a new Enemy

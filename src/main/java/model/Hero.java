@@ -1,15 +1,20 @@
 package model;
+import com.example.aventurasdemarcoyluis.Items;
+
+import java.util.List;
 import java.util.Random;
 
 public class Hero extends AbstractCharacters{
-    private String name;
+    private HeroType hero;
     private int fightPoints;
+    private List<Items> weapons;
 
-    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, String hisName){
+    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, HeroType dHero){
         super(dRank,dHitPoint,dDefPoint,dHealthPoint);
-        this.name = hisName;
+        this.hero = dHero;
     }
 
+    //prob es la probabilidad de exito
     public boolean effectiveHit(int prob){
         Random r = new Random();
         int aux = (int)(r.nextFloat()*100);
@@ -20,7 +25,7 @@ public class Hero extends AbstractCharacters{
     }
 //d/
     public boolean allowAttack(int prob,int fp){
-        return effectiveHit(prob) & enoughFightPoints(fp);
+        return effectiveHit(prob) && enoughFightPoints(fp);
     }
     public void jumpAttack(Opponent opponent){
         int damage = calculateDamage(this,opponent,1);
@@ -31,8 +36,11 @@ public class Hero extends AbstractCharacters{
 
     public void hammerAttack(Opponent opponent){
         int damage = calculateDamage(this,opponent,1);
-        if(allowAttack(25,2)) {
+        if(allowAttack(75,2)) {
             opponent.setHealthPoint(getHealthPoint() - damage);
         }
     }
+     public void addItems(Items nItems){
+        weapons.add(nItems);
+     }
 }
