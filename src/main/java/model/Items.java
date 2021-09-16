@@ -1,5 +1,15 @@
 package model;
 
-public enum Items {
-    STAR, RED_MUSHROOM, HONEY_SYRUP
+public class Items {
+    private ItemsType type;
+
+
+    public Items(ItemsType dType){
+        type = dType;
+    }
+
+    public ItemsType getType() {
+        return type;
+    }
+
 }

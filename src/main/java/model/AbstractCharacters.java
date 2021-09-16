@@ -22,6 +22,9 @@ public abstract class AbstractCharacters implements Character {
         return hitPoint;
     }
 
+    public void setHitPoints(int hp){
+        this.hitPoint = hp;
+    }
     public int getDefPoints() {
         return hitPoint;
     }
@@ -47,7 +50,6 @@ public abstract class AbstractCharacters implements Character {
     }
 
 
-
     protected int calculateDamage(Character A, Character B, int K) {
         //implement damage formulate
         return K * partialCalculate(A) / B.getDefPoints();
@@ -58,6 +60,14 @@ public abstract class AbstractCharacters implements Character {
     }
 
 
+    //personaje KO golpea con 0
+    public void KO(Character A){
+        if(defeated(A)) A.setHitPoints(0);
+    }
+
+    public boolean defeated(Character A){
+        return A.getHealthPoint() == 0;
+    }
 
 
 }

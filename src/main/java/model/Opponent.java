@@ -16,4 +16,5 @@ public class Opponent extends AbstractCharacters{
     public void setType(OpponentType nType) {
         this.type = nType;
     }
+
 }

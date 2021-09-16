@@ -1,17 +1,17 @@
 package model;
-import com.example.aventurasdemarcoyluis.Items;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Hero extends AbstractCharacters{
-    private HeroType hero;
+    private HeroType type;
     private int fightPoints;
-    private List<Items> weapons;
+    private ArrayList<ItemsType> weapons;
 
-    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, HeroType dHero){
-        super(dRank,dHitPoint,dDefPoint,dHealthPoint);
-        this.hero = dHero;
+    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, HeroType dType){
+        super(dRank,dHitPoint,dDefPoint, dHealthPoint);
+        this.type = dType;
+        weapons = new ArrayList<>();
     }
 
     //prob es la probabilidad de exito
@@ -23,7 +23,6 @@ public class Hero extends AbstractCharacters{
     public boolean enoughFightPoints(int fp){
         return (fightPoints - fp) > 0;
     }
-//d/
     public boolean allowAttack(int prob,int fp){
         return effectiveHit(prob) && enoughFightPoints(fp);
     }
@@ -33,14 +32,45 @@ public class Hero extends AbstractCharacters{
             opponent.setHealthPoint(getHealthPoint() - damage);
         }
     }
-
     public void hammerAttack(Opponent opponent){
         int damage = calculateDamage(this,opponent,1);
         if(allowAttack(75,2)) {
             opponent.setHealthPoint(getHealthPoint() - damage);
         }
     }
-     public void addItems(Items nItems){
-        weapons.add(nItems);
-     }
+
+    public ArrayList<ItemsType> getWeapons() {
+        return weapons;
+    }
+
+    public int getFightPoints() {
+        return fightPoints;
+    }
+
+    public void setFightPoints(int fightPoints) {
+        this.fightPoints = fightPoints;
+    }
+
+    public HeroType getType() {
+        return type;
+    }
+
+    public void addItem(ItemsType nItem){
+        weapons.add(nItem);
+    }
+    public int getItemIndex(ItemsType testStar) {
+        return weapons.indexOf(testStar);
+    }
+
+    public void SpendItemTest(ItemsType type){
+        weapons.remove(getItemIndex(type));
+        type.effect(this);
+    }
+
+    public int maxHealth(HeroType hero){
+        return hero.MaxHealth(this.getRank());
+    }
+
+
 }
+
