@@ -25,23 +25,20 @@ public abstract class AbstractCharacters implements Character {
     public void setHitPoints(int hp){
         this.hitPoint = hp;
     }
-    public int getDefPoints() {
-        return hitPoint;
-    }
 
     public void setRank(int rank) {
         this.rank = rank;
     }
 
-    public int getDefPoint() {
+    public int getDefPoints() {
         return defPoint;
     }
 
-    public void setDefPoint(int defPoint) {
+    public void setDefPoints(int defPoint) {
         this.defPoint = defPoint;
     }
 
-    public int getHealthPoint() {
+    public int getHealthPoints() {
         return healthPoint;
     }
 
@@ -54,7 +51,6 @@ public abstract class AbstractCharacters implements Character {
         //implement damage formulate
         return K * partialCalculate(A) / B.getDefPoints();
     }
-
     private int partialCalculate(Character A) {
         return A.getHitPoints() * A.getRank();
     }
@@ -66,9 +62,24 @@ public abstract class AbstractCharacters implements Character {
     }
 
     public boolean defeated(Character A){
-        return A.getHealthPoint() == 0;
+        return A.getHealthPoints() == 0;
+    }
+
+    //definida en una clase superior
+    //determina la vida maxima por nivel
+    public int maxHealthGeneric(Character A){
+        return A.maxHealth();
     }
 
 
+    public void updateLvl(Integer lvl) {
+        lvl = lvl != null ? lvl : 1;
+        setRank(getRank() + lvl); // update next level
+        UpStats(getRank());
+    }
+
+    /**
+     * @param rank object's level
+     */
+    public abstract void UpStats(int rank);
 }
-    

@@ -8,7 +8,6 @@ public class Opponent extends AbstractCharacters{
         this.type = dType;
     }
 
-
     public OpponentType getType() {
         return type;
     }
@@ -17,4 +16,21 @@ public class Opponent extends AbstractCharacters{
         this.type = nType;
     }
 
+    @Override
+    public int maxHealth() {
+        OpponentType aOpponent = getType();
+        return aOpponent.maxHealth(this.getRank());
+    }
+
+    public void updateLvl() {
+        setRank(getRank() + 1); // update next level
+        UpStats(getRank());
+    }
+    @Override
+    public void UpStats(int rank){
+        OpponentType aOpponent = getType();
+        setHitPoints(aOpponent.maxHit(getRank()));
+        setDefPoints(aOpponent.maxDefense(getRank()));
+        setHealthPoint(aOpponent.maxHealth(getRank()));
+    }
 }

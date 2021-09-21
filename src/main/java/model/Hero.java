@@ -8,10 +8,19 @@ public class Hero extends AbstractCharacters{
     private int fightPoints;
     private ArrayList<ItemsType> weapons;
 
-    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, HeroType dType){
+    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, int dFightPoint, HeroType dType){
         super(dRank,dHitPoint,dDefPoint, dHealthPoint);
         this.type = dType;
+        this.fightPoints = dFightPoint;
         weapons = new ArrayList<>();
+    }
+
+    public Hero(int rank, HeroType dType, int dFightPoint){
+        super(rank,0,0,0);
+        this.type = dType;
+        this.fightPoints = dFightPoint;
+        weapons = new ArrayList<>();
+        UpStats(rank);
     }
 
     //prob es la probabilidad de exito
@@ -29,13 +38,13 @@ public class Hero extends AbstractCharacters{
     public void jumpAttack(Opponent opponent){
         int damage = calculateDamage(this,opponent,1);
         if(allowAttack(100,1)) {
-            opponent.setHealthPoint(getHealthPoint() - damage);
+            opponent.setHealthPoint(getHealthPoints() - damage);
         }
     }
     public void hammerAttack(Opponent opponent){
         int damage = calculateDamage(this,opponent,1);
         if(allowAttack(75,2)) {
-            opponent.setHealthPoint(getHealthPoint() - damage);
+            opponent.setHealthPoint(getHealthPoints() - damage);
         }
     }
 
@@ -55,20 +64,34 @@ public class Hero extends AbstractCharacters{
         return type;
     }
 
+
     public void addItem(ItemsType nItem){
         weapons.add(nItem);
     }
+
+    //inter
     public int getItemIndex(ItemsType testStar) {
         return weapons.indexOf(testStar);
     }
 
-    public void SpendItemTest(ItemsType type){
+    public void SpendItem(ItemsType type){
         weapons.remove(getItemIndex(type));
         type.effect(this);
     }
 
-    public int maxHealth(HeroType hero){
-        return hero.MaxHealth(this.getRank());
+    @Override
+    public int maxHealth() {
+        HeroType aHero = getType();
+        return aHero.maxHealthHero(this.getRank());
+    }
+
+    @Override
+    public void UpStats(int rank){
+        HeroType aHero = getType();
+        setHitPoints(aHero.maxHitHero(rank));
+        setDefPoints(aHero.maxDefenseHero(rank));
+        setHealthPoint(aHero.maxHealthHero(rank));
+        setFightPoints(aHero.maxFightHero(rank));
     }
 
 

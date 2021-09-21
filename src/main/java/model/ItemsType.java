@@ -10,8 +10,8 @@ public enum ItemsType {
     RED_MUSHROOM{
         @Override
         public void effect(Hero hero){
-            int max = hero.maxHealth(hero.getType());
-            int plus = hero.getHealthPoint() + (int) (max*0.10);
+            int max = hero.maxHealth();
+            int plus = hero.getHealthPoints() + (int) (max*0.10);
             if(plus >= max){
                 hero.setHealthPoint(max);
             }else{
