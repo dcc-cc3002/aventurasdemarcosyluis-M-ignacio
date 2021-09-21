@@ -3,20 +3,20 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Hero extends AbstractCharacters{
+public class Hero extends AbstractCharacters {
     private HeroType type;
     private int fightPoints;
     private ArrayList<ItemsType> weapons;
 
-    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, int dFightPoint, HeroType dType){
-        super(dRank,dHitPoint,dDefPoint, dHealthPoint);
+    public Hero(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, int dFightPoint, HeroType dType) {
+        super(dRank, dHitPoint, dDefPoint, dHealthPoint);
         this.type = dType;
         this.fightPoints = dFightPoint;
         weapons = new ArrayList<>();
     }
 
-    public Hero(int rank, HeroType dType, int dFightPoint){
-        super(rank,0,0,0);
+    public Hero(int rank, HeroType dType, int dFightPoint) {
+        super(rank, 0, 0, 0);
         this.type = dType;
         this.fightPoints = dFightPoint;
         weapons = new ArrayList<>();
@@ -24,26 +24,30 @@ public class Hero extends AbstractCharacters{
     }
 
     //prob es la probabilidad de exito
-    public boolean effectiveHit(int prob){
+    public boolean effectiveHit(int prob) {
         Random r = new Random();
-        int aux = (int)(r.nextFloat()*100);
+        int aux = (int) (r.nextFloat() * 100);
         return prob < aux;
     }
-    public boolean enoughFightPoints(int fp){
+
+    public boolean enoughFightPoints(int fp) {
         return (fightPoints - fp) > 0;
     }
-    public boolean allowAttack(int prob,int fp){
+
+    public boolean allowAttack(int prob, int fp) {
         return effectiveHit(prob) && enoughFightPoints(fp);
     }
-    public void jumpAttack(Opponent opponent){
-        int damage = calculateDamage(this,opponent,1);
-        if(allowAttack(100,1)) {
+
+    public void jumpAttack(Opponent opponent) {
+        int damage = calculateDamage(this, opponent, 1);
+        if (allowAttack(100, 1)) {
             opponent.setHealthPoint(getHealthPoints() - damage);
         }
     }
-    public void hammerAttack(Opponent opponent){
-        int damage = calculateDamage(this,opponent,1);
-        if(allowAttack(75,2)) {
+
+    public void hammerAttack(Opponent opponent) {
+        int damage = calculateDamage(this, opponent, 1);
+        if (allowAttack(75, 2)) {
             opponent.setHealthPoint(getHealthPoints() - damage);
         }
     }
@@ -65,7 +69,7 @@ public class Hero extends AbstractCharacters{
     }
 
 
-    public void addItem(ItemsType nItem){
+    public void addItem(ItemsType nItem) {
         weapons.add(nItem);
     }
 
@@ -74,7 +78,7 @@ public class Hero extends AbstractCharacters{
         return weapons.indexOf(testStar);
     }
 
-    public void SpendItem(ItemsType type){
+    public void SpendItem(ItemsType type) {
         weapons.remove(getItemIndex(type));
         type.effect(this);
     }
@@ -82,11 +86,16 @@ public class Hero extends AbstractCharacters{
     @Override
     public int maxHealth() {
         HeroType aHero = getType();
-        return aHero.maxHealthHero(this.getRank());
+        return aHero.maxHealthHero(getRank());
+    }
+
+    public int maxFight() {
+        HeroType aHero = getType();
+        return aHero.maxFightHero(getRank());
     }
 
     @Override
-    public void UpStats(int rank){
+    public void UpStats(int rank) {
         HeroType aHero = getType();
         setHitPoints(aHero.maxHitHero(rank));
         setDefPoints(aHero.maxDefenseHero(rank));

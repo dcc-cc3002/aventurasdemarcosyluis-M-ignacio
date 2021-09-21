@@ -22,7 +22,7 @@ public abstract class AbstractCharacters implements Character {
         return hitPoint;
     }
 
-    public void setHitPoints(int hp){
+    public void setHitPoints(int hp) {
         this.hitPoint = hp;
     }
 
@@ -51,24 +51,25 @@ public abstract class AbstractCharacters implements Character {
         //implement damage formulate
         return K * partialCalculate(A) / B.getDefPoints();
     }
+
     private int partialCalculate(Character A) {
         return A.getHitPoints() * A.getRank();
     }
 
 
     //personaje KO golpea con 0
-    public void KO(Character A){
-        if(defeated(A)) A.setHitPoints(0);
+    public void KO(Character A) {
+        if (defeated(A)) A.setHitPoints(0);
     }
 
-    public boolean defeated(Character A){
+    public boolean defeated(Character A) {
         return A.getHealthPoints() == 0;
     }
 
     //definida en una clase superior
     //determina la vida maxima por nivel
-    public int maxHealthGeneric(Character A){
-        return A.maxHealth();
+    public int maxHealthGeneric() {
+        return maxHealth();
     }
 
 

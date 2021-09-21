@@ -1,6 +1,6 @@
 package model;
 
-public class Opponent extends AbstractCharacters{
+public class Opponent extends AbstractCharacters {
     private OpponentType type;
 
     public Opponent(int dRank, int dHitPoint, int dDefPoint, int dHealthPoint, OpponentType dType) {
@@ -26,8 +26,9 @@ public class Opponent extends AbstractCharacters{
         setRank(getRank() + 1); // update next level
         UpStats(getRank());
     }
+
     @Override
-    public void UpStats(int rank){
+    public void UpStats(int rank) {
         OpponentType aOpponent = getType();
         setHitPoints(aOpponent.maxHit(getRank()));
         setDefPoints(aOpponent.maxDefense(getRank()));
