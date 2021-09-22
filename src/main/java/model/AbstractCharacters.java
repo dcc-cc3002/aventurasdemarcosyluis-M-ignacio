@@ -63,7 +63,7 @@ public abstract class AbstractCharacters implements Character {
     }
 
     public boolean defeated(Character A) {
-        return A.getHealthPoints() == 0;
+        return A.getHealthPoints() <= 0;
     }
 
     //definida en una clase superior
@@ -76,11 +76,11 @@ public abstract class AbstractCharacters implements Character {
     public void updateLvl(Integer lvl) {
         lvl = lvl != null ? lvl : 1;
         setRank(getRank() + lvl); // update next level
-        UpStats(getRank());
+        upStats(getRank());
     }
 
     /**
      * @param rank object's level
      */
-    public abstract void UpStats(int rank);
+    public abstract void upStats(int rank);
 }

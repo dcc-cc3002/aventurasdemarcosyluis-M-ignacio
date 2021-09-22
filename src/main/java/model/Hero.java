@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Hero extends AbstractCharacters {
     private HeroType type;
@@ -20,9 +19,9 @@ public class Hero extends AbstractCharacters {
         this.type = dType;
         this.fightPoints = dFightPoint;
         weapons = new ArrayList<>();
-        UpStats(rank);
+        upStats(rank);
     }
-
+    /*
     //prob es la probabilidad de exito
     public boolean effectiveHit(int prob) {
         Random r = new Random();
@@ -51,7 +50,7 @@ public class Hero extends AbstractCharacters {
             opponent.setHealthPoint(getHealthPoints() - damage);
         }
     }
-
+    */
     public ArrayList<ItemsType> getWeapons() {
         return weapons;
     }
@@ -95,7 +94,7 @@ public class Hero extends AbstractCharacters {
     }
 
     @Override
-    public void UpStats(int rank) {
+    public void upStats(int rank) {
         HeroType aHero = getType();
         setHitPoints(aHero.maxHitHero(rank));
         setDefPoints(aHero.maxDefenseHero(rank));
