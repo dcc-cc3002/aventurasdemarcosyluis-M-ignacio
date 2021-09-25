@@ -27,7 +27,7 @@ public class Hero extends AbstractCharacters {
         this.fightPoints = dFightPoint;
         weapons = new ArrayList<>();
     }
-
+//
     /**
      * Constructor that allows to create a new "Hero" object initialized
      * with the maximum stats (attribute) given the Rank entered.
