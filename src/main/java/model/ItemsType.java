@@ -1,20 +1,23 @@
 package model;
 
+/**
+ * Items available for be equipped by hero.
+ */
 public enum ItemsType {
     /**
-     * First item available for a hero. The effect make that a hero will be invincible
-     * for a short period of time.
+     * First item available for a hero. The effect make that a hero
+     * will be invincible for a short period of time (actually it will do soon).
      */
     STAR {
         /**
-         * attributing effect of the Star item on a hero.
-         * @param hero type fo hero that receive the effect.
+         * Attributing effect of the Star item on a hero.
+         *
+         * @param hero type of hero that receive the effect.
          */
         @Override
         public void effect(Hero hero) {
             //it'll do something soon
         }
-
     },
     /**
      * Second item available for a hero. The effect heals hero ten percent
@@ -23,9 +26,9 @@ public enum ItemsType {
      */
     RED_MUSHROOM {
         /**
-         * attributing effect of the Red Mushroom item on a hero.
+         * Attributing effect of the Red Mushroom item on a hero.
          *
-         * @param hero type fo hero that receive the effect.
+         * @param hero type of hero that receive the effect.
          */
         @Override
         public void effect(Hero hero) {
@@ -37,7 +40,6 @@ public enum ItemsType {
                 hero.setHealthPoint(plus);
             }
         }
-
     },
     /**
      * Third item available for a hero. The effect give the hero a three
@@ -48,7 +50,7 @@ public enum ItemsType {
         /**
          * attribute effect to Honey Syrup item on a hero.
          *
-         * @param hero type fo hero that receive the effect.
+         * @param hero type of hero that receive the effect.
          */
         @Override
         public void effect(Hero hero) {
@@ -57,13 +59,12 @@ public enum ItemsType {
             if (plus >= max) hero.setFightPoints(max);
             else hero.setFightPoints(plus);
         }
-
     };
 
     /**
-     * attributing effect of the star item on a hero.
+     * Attributing effect of the star item on a hero.
      *
-     * @param hero type fo hero that receive the effect.
+     * @param hero type of hero that receive the effect.
      */
     public abstract void effect(Hero hero);
 }
