@@ -1,5 +1,5 @@
-import model.OpponentType;
-import model.Opponent;
+import model.*;
+import model.enums.OpponentType;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
@@ -9,22 +9,24 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class OpponentTest {
-    private Opponent testGoomba;
-    private Opponent testBoo;
-    private Opponent testSpiny;
-    private Opponent testGoombaFull;
-    private Opponent testBooFull;
-    private Opponent testSpinyFull;
+
+    private Goomba testGoomba;
+    private Boo testBoo;
+    private Spiny testSpiny;
+    private Goomba testGoombaFull;
+    private Boo testBooFull;
+    private Spiny testSpinyFull;
+
 
     @BeforeEach
     public void setUp() {
-        testGoomba = new Opponent(1, 5, 5, 5, OpponentType.GOOMBA);
-        testBoo = new Opponent(1, 5, 5, 5, OpponentType.BOO);
-        testSpiny = new Opponent(1, 5, 5, 5, OpponentType.SPINY);
+        testGoomba = new Goomba(1, 5, 5, 5, OpponentType.GOOMBA);
+        testBoo = new Boo(1, 5, 5, 5, OpponentType.BOO);
+        testSpiny = new Spiny(1, 5, 5, 5, OpponentType.SPINY);
 
-        testGoombaFull = new Opponent(5, OpponentType.GOOMBA);
-        testBooFull = new Opponent(5, OpponentType.BOO);
-        testSpinyFull = new Opponent(5, OpponentType.SPINY);
+        testGoombaFull = new Goomba(5, OpponentType.GOOMBA);
+        testBooFull = new Boo(5, OpponentType.BOO);
+        testSpinyFull = new Spiny(5, OpponentType.SPINY);
     }
 
     @Test
@@ -40,7 +42,7 @@ public class OpponentTest {
 
     @Test
     public void updateGoombaTest() {
-        testGoomba.updateLvl(4);
+        testGoomba.maxLvlUp(4);
         assertEquals(testGoomba.getHitPoints(), testGoombaFull.getHitPoints());
         assertEquals(testGoomba.getDefPoints(), testGoombaFull.getDefPoints());
         assertEquals(testGoomba.getHealthPoints(), testGoombaFull.getHealthPoints());
@@ -48,7 +50,7 @@ public class OpponentTest {
 
     @Test
     public void updateBooTest() {
-        testBoo.updateLvl(4);
+        testBoo.maxLvlUp(4);
         assertEquals(testBoo.getHitPoints(), testBooFull.getHitPoints());
         assertEquals(testBoo.getDefPoints(), testBooFull.getDefPoints());
         assertEquals(testBoo.getHealthPoints(), testBooFull.getHealthPoints());
@@ -56,7 +58,7 @@ public class OpponentTest {
 
     @Test
     public void updateSpinyTest() {
-        testSpiny.updateLvl(4);
+        testSpiny.maxLvlUp(4);
         assertEquals(testSpiny.getHitPoints(), testSpinyFull.getHitPoints());
         assertEquals(testSpiny.getDefPoints(), testSpinyFull.getDefPoints());
         assertEquals(testSpiny.getHealthPoints(), testSpinyFull.getHealthPoints());
@@ -66,9 +68,9 @@ public class OpponentTest {
     public void defeatedTest(){
         //enemy receives attack and his health points set in zero.
         testSpiny.setHealthPoint(0);
-        assertTrue(testSpiny.defeated(testSpiny));
+        assertTrue(testSpiny.cDefeated());
         testSpiny.setHealthPoint(testSpiny.maxHealth());
-        assertFalse(testSpiny.defeated(testSpiny));
+        assertFalse(testSpiny.cDefeated());
 
     }
 
