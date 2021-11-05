@@ -192,6 +192,7 @@ public class HeroTest {
 
     @Test
     public void removeItemChestTest() {
+
         testChest.remover(testMush); //0
         assertEquals(testChest.capacity(), 0);
         testChest.remover(testMush); //0
