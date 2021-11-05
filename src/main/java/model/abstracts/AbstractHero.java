@@ -1,5 +1,6 @@
 package model.abstracts;
 
+import model.Chest;
 import model.enums.HeroType;
 import model.interfaces.IItems;
 
@@ -180,5 +181,10 @@ public abstract class AbstractHero extends AbstractCharacters implements model.i
     }
 
     public  abstract int maxFight(int rank);
+
+    public void spendItem(IItems item){
+        item.effect(this);
+    }
+
 }
 

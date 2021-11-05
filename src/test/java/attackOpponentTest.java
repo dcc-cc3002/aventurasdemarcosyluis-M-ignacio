@@ -77,7 +77,6 @@ public class attackOpponentTest {
         int damage = testBoo.calculateDamage(testBoo, testLuis, 0.75);
 
         testBoo.attackNormal(testLuis);
-
         assertEquals(hpl, testLuis.getHealthPoints() + damage);
         assertEquals(hpb, testBoo.getHealthPoints());
     }

@@ -68,16 +68,28 @@ public abstract class AbstractCharacters implements Character {
     }
 
 
+    /**
+     * Calculate the damage done by a Character A attack upon Character B
+     *
+     * @param A attacker character
+     * @param B character attacked
+     * @param K damage constant
+     * @return damage carry out by a certain attack
+     */
     public int calculateDamage(Character A, Character B, double K) {
         //implement damage formulate
-        return (int) K * partialCalculate(A) / B.getDefPoints();
+        return (int) (K * partialCalculate(A) / B.getDefPoints());
     }
 
-
+    /**
+     * Calculate the damage partial given Character A
+     *
+     * @param A attacker character
+     * @return partial damage
+     */
     private int partialCalculate(Character A) {
         return A.getHitPoints() * A.getRank();
     }
-
 
     /**
      * If A was defeated, his HitPoints is set to zero.
@@ -117,7 +129,7 @@ public abstract class AbstractCharacters implements Character {
     public void doHurt(int damage) {
         int hp = getHealthPoints() - damage;
         if (hp <= 0)
-            setHealthPoint(0);
+            this.setHealthPoint(0);
         setHealthPoint(hp);
     }
 
@@ -188,7 +200,4 @@ public abstract class AbstractCharacters implements Character {
     public abstract void maxUpStats(int rank);
 
 
-    public int updateActual(int atributte, double prob) {
-        return atributte + update(atributte, prob);
-    }
 }

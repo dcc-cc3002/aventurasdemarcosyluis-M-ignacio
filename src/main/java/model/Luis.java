@@ -2,6 +2,7 @@ package model;
 
 import model.abstracts.AbstractHero;
 import model.enums.HeroType;
+import model.interfaces.IItems;
 import model.interfaces.ILuis;
 
 /**
@@ -97,7 +98,6 @@ public class Luis extends AbstractHero implements ILuis {
             opponent.attackedByHammerLuis(this);
         }
     }
-
 
     @Override
     public void attackedByGoomba(Goomba goomba) {

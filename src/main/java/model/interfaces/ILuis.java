@@ -4,7 +4,7 @@ import model.Boo;
 import model.Goomba;
 import model.Spiny;
 
-public interface ILuis extends IHero{
+public interface ILuis{
 
     void attackedByGoomba(Goomba goomba);
     void attackedBySpiny(Spiny spiny);

@@ -3,7 +3,7 @@ package model.interfaces;
 import model.Spiny;
 import model.*;
 
-public interface IMarcos extends IHero {
+public interface IMarcos{
     void attackHammer(Boo opponent);
     void attackJump(Boo opponent);
 

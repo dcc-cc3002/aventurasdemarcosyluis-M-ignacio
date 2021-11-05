@@ -12,7 +12,10 @@ import model.interfaces.IItems;
 public class Star implements IItems {
     private final ItemsType dType;
 
-    public Star(){
+    /**
+     * Star Constructor. Create a Star Object item.
+     */
+    public Star() {
         dType = ItemsType.STAR;
     }
 
@@ -26,6 +29,8 @@ public class Star implements IItems {
         //it'll do something soon
     }
 
+    //Javadoc inherited
+    @Override
     public ItemsType getType() {
         return dType;
     }

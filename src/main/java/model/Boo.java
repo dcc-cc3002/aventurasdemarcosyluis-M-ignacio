@@ -48,6 +48,6 @@ public class Boo extends AbstractOpponent implements IBoo {
 
     @Override
     public void attackNormal(Luis luis) {
-
+        luis.attackedByBoo(this);
     }
 }

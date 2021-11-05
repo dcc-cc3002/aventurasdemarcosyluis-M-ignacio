@@ -5,6 +5,8 @@ import model.enums.ItemsType;
 import model.interfaces.IHero;
 import model.interfaces.IItems;
 
+import java.util.Objects;
+
 /**
  * Third item available for a hero. The effect give the hero a three
  * fighting points. The hero only can recover fighting points up to
@@ -13,7 +15,10 @@ import model.interfaces.IItems;
 public class HoneySyrup implements IItems {
     private final ItemsType dType;
 
-    public HoneySyrup(){
+    /**
+     * HoneySyrup constructor. Create an HoneySyrup Object Item.
+     */
+    public HoneySyrup() {
         this.dType = ItemsType.HONEY_SYRUP;
     }
 
@@ -30,6 +35,16 @@ public class HoneySyrup implements IItems {
         else hero.setFightPoint(plus);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HoneySyrup)) return false;
+        HoneySyrup that = (HoneySyrup) o;
+        return dType == that.dType;
+    }
+
+    //Javadoc inherited
+    @Override
     public ItemsType getType() {
         return dType;
     }
