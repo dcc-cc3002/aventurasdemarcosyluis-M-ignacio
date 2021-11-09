@@ -32,6 +32,6 @@ estan en un archivo Enum donde se implementa su funcionalidad y son llamados con
 
 Se implementa la logica de ataques mediante interfaces entre los personajes de forma de solo permitir los ataques permitidos dada las instrucciones definidas. Al crear un  Baúl (Chest constructor) no se considero necesario enlazarlo a los perosnajes principales por dos razones de construcción: EL chest solo permite que objetos tipo Heroe ocupen items, solo existe un Chest por partida. 
 
-El controlador permite utilizar las funcionalidades del modelo. Se implementa un sistema de turnos rotativos. No se implemento el orden en que atacan los personajes por falta de una buena idea?). En terminos generales se crea las bases del controlador, para en una entrega posterior general fluides en el juego.
+El controlador permite utilizar las funcionalidades del modelo. Se implementa un sistema de turnos rotativos. No se implemento el orden en que atacan los personajes por falta de una buena idea?). En terminos generales se crea las bases del controlador, para en una entrega posterior general fluidez en el juego.
 
 
