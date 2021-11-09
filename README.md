@@ -10,7 +10,7 @@ funcionamiento.
 
 -ejecutar la carpeta test ubicado en \src\test.
 
-###primera entrega:
+### primera entrega:
 
 En esta primera entrega no se implementó la dinámica de ataques (aunque en un principio era la idea) por falta de tiempo una parte del código queda como comentario. Al no existir 
 una interacción entre las clases Hero y Opponent, al crear un objeto de cualquier clase no es posible que su vida disminuya por tanto para cada test se crean dos objectos de una 
@@ -28,7 +28,7 @@ ambos con sus respectivos métodos. Además, añade el atributo FightPoints que 
 estan en un archivo Enum donde se implementa su funcionalidad y son llamados con métodos únicos desde la clase Hero.
 
 
-###Segunda entrega:
+### Segunda entrega:
 
 Se implementa la logica de ataques mediante interfaces entre los personajes de forma de solo permitir los ataques permitidos dada las instrucciones definidas. Al crear un  Baúl (Chest constructor) no se considero necesario enlazarlo a los perosnajes principales por dos razones de construcción: EL chest solo permite que objetos tipo Heroe ocupen items, solo existe un Chest por partida. 
 
