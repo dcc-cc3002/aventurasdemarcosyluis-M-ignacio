@@ -1,10 +1,18 @@
-module com.example.aventurasdemarcoyluis{
+module aventurasdemarcoyluis{
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.jetbrains.annotations;
 
-
-    opens com.example.aventurasdemarcoyluis to javafx.fxml;
-    exports com.example.aventurasdemarcoyluis;
     exports model;
     opens model to javafx.fxml;
+    exports model.abstracts;
+    opens model.abstracts to javafx.fxml;
+    exports model.enums;
+    opens model.enums to javafx.fxml;
+    exports model.items;
+    opens model.items to javafx.fxml;
+    exports model.interfaces;
+    opens model.interfaces to javafx.fxml;
+    exports model.factory;
+    opens model.factory to javafx.fxml;
 }
