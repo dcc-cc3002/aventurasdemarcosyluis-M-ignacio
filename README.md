@@ -4,11 +4,11 @@ dos códigos para testear la funcionalidad de las clases Hero y Oppontent que im
 
 funcionamiento general:
 
--descargar el repositorio.
+- descargar el repositorio.
 
--abrir en su entorno de desarrollo.
+- abrir en su entorno de desarrollo.
 
--ejecutar la carpeta test ubicado en \src\test.
+- ejecutar la carpeta test ubicado en \src\test.
 
 ### primera entrega:
 
