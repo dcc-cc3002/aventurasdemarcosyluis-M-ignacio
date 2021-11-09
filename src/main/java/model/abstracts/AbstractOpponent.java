@@ -9,7 +9,7 @@ import model.interfaces.IOpponent;
  * to hit between them.
  */
 public abstract class AbstractOpponent extends AbstractCharacters implements IOpponent {
-    private OpponentType type;
+    private final OpponentType type;
 
     /**
      * Constructor that allow to create a new "Opponent" object initialized with
@@ -40,7 +40,7 @@ public abstract class AbstractOpponent extends AbstractCharacters implements IOp
     }
 
     /**
-     * Get Opponent Type
+     * Get Opponent Type.
      *
      * @return Opponent Type
      */
@@ -48,8 +48,11 @@ public abstract class AbstractOpponent extends AbstractCharacters implements IOp
         return type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void maxUpStats(int rank){
+    public void maxUpStats(int rank) {
         setHitPoints(maxHit(rank));
         setDefPoints(maxDefense(rank));
         setHealthPoint(maxHealth(rank));

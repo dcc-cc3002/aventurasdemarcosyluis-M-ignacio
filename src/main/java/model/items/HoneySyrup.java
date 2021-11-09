@@ -1,11 +1,10 @@
 package model.items;
 
-import model.abstracts.AbstractHero;
+
 import model.enums.ItemsType;
 import model.interfaces.IHero;
 import model.interfaces.IItems;
 
-import java.util.Objects;
 
 /**
  * Third item available for a hero. The effect give the hero a three
@@ -22,6 +21,12 @@ public class HoneySyrup implements IItems {
         this.dType = ItemsType.HONEY_SYRUP;
     }
 
+    /**{@inheritDoc}*/
+    @Override
+    public ItemsType getType() {
+        return dType;
+    }
+
     /**
      * attribute effect to Honey Syrup item on a hero.
      *
@@ -31,21 +36,6 @@ public class HoneySyrup implements IItems {
     public void effect(IHero hero) {
         int max = hero.maxFight();
         int plus = hero.getFightPoint() + 3;
-        if (plus >= max) hero.setFightPoint(max);
-        else hero.setFightPoint(plus);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof HoneySyrup)) return false;
-        HoneySyrup that = (HoneySyrup) o;
-        return dType == that.dType;
-    }
-
-    //Javadoc inherited
-    @Override
-    public ItemsType getType() {
-        return dType;
+        hero.setFightPoint(Math.min(plus, max));
     }
 }

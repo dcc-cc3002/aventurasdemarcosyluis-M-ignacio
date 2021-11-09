@@ -2,6 +2,7 @@ package model.abstracts;
 
 import model.interfaces.Character;
 
+
 /**
  * Abstract class is common for any type of character.
  */
@@ -27,42 +28,66 @@ public abstract class AbstractCharacters implements Character {
         this.healthPoint = dHealthPoint;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int getRank() {
         return rank;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setRank(int rank) {
         this.rank = rank;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int getHitPoints() {
         return hitPoint;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setHitPoints(int hp) {
         this.hitPoint = hp;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int getDefPoints() {
         return defPoint;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setDefPoints(int defPoint) {
         this.defPoint = defPoint;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int getHealthPoints() {
         return healthPoint;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setHealthPoint(int healthPoint) {
         this.healthPoint = healthPoint;
     }
@@ -77,7 +102,6 @@ public abstract class AbstractCharacters implements Character {
      * @return damage carry out by a certain attack
      */
     public int calculateDamage(Character A, Character B, double K) {
-        //implement damage formulate
         return (int) (K * partialCalculate(A) / B.getDefPoints());
     }
 
@@ -91,13 +115,13 @@ public abstract class AbstractCharacters implements Character {
         return A.getHitPoints() * A.getRank();
     }
 
+
     /**
-     * If A was defeated, his HitPoints is set to zero.
-     *
-     * @param A some type character (Hero or Opponent)
+     * {@inheritDoc}
      */
-    public void KO(Character A) {
-        if (this.cDefeated()) A.setHitPoints(0);
+    @Override
+    public void KO() {
+        if (this.cDefeated()) this.setHitPoints(0);
     }
 
     /**
@@ -110,16 +134,14 @@ public abstract class AbstractCharacters implements Character {
         return getHealthPoints() == 0;
     }
 
+
     /**
-     * Given us the maximum Health Points some Hero or Opponent by
-     * his current level.
-     *
-     * @return maximum Health Points
+     * {@inheritDoc}
      */
     public int maxHealth() {
         return maxHealth(this.getRank());
     }
-//rvw
+
 
     /**
      * give out health point for some Hero or Opponent attacked.
@@ -128,9 +150,7 @@ public abstract class AbstractCharacters implements Character {
      */
     public void doHurt(int damage) {
         int hp = getHealthPoints() - damage;
-        if (hp <= 0)
-            this.setHealthPoint(0);
-        setHealthPoint(hp);
+        this.setHealthPoint(Math.max(hp, 0));
     }
 
     /**

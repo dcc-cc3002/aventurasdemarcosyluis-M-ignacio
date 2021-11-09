@@ -1,3 +1,5 @@
+package model;
+
 import model.*;
 import model.enums.OpponentType;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,7 +80,7 @@ public class OpponentTest {
     public void KoTest() {
         //enemy receives attack and his health points set in zero.
         testBoo.setHealthPoint(0);
-        testBoo.KO(testBoo);
+        testBoo.KO();
         assertEquals(testBoo.getHitPoints(), 0);
     }
 

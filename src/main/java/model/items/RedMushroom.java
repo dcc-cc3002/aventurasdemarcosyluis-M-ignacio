@@ -1,11 +1,9 @@
 package model.items;
 
-import model.abstracts.AbstractHero;
 import model.enums.ItemsType;
 import model.interfaces.IHero;
 import model.interfaces.IItems;
 
-import java.util.Objects;
 
 /**
  * Second item available for a hero. The effect heals hero ten percent
@@ -22,7 +20,8 @@ public class RedMushroom implements IItems {
         this.dType = ItemsType.RED_MUSHROOM;
     }
 
-    //Javadoc inherited
+
+    /**{@inheritDoc}*/
     @Override
     public ItemsType getType() {
         return dType;
@@ -38,14 +37,6 @@ public class RedMushroom implements IItems {
         int max = hero.maxHealth();
         int plus = hero.getHealthPoints() + (int) (max * 0.10);
         hero.setHealthPoint(Math.min(plus, max));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RedMushroom)) return false;
-        RedMushroom that = (RedMushroom) o;
-        return dType == that.dType;
     }
 
 }

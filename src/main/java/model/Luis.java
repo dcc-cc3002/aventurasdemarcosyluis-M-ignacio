@@ -2,14 +2,14 @@ package model;
 
 import model.abstracts.AbstractHero;
 import model.enums.HeroType;
-import model.interfaces.IItems;
+import model.interfaces.Character;
 import model.interfaces.ILuis;
 
 /**
  * The second character of the game. Being honest everyone prefers
  * Marcos but if you have bad taste, you can choose it.
  */
-public class Luis extends AbstractHero implements ILuis {
+public class Luis extends AbstractHero implements ILuis, Character {
 
     /**
      * Hero Luis constructor. It allows to create a new hero "luis" initialized with any atributte initial.
@@ -29,36 +29,49 @@ public class Luis extends AbstractHero implements ILuis {
      * Hero Luis constructor. It allows to create a new "Luis" objects initialized with atributte given the Rank
      * entered.
      *
-     * @param dRank       define Rank
-     * @param dType       define TypeHero
+     * @param dRank define Rank
+     * @param dType define TypeHero
      */
-    public Luis(int dRank, HeroType dType){
+    public Luis(int dRank, HeroType dType) {
         super(dRank, dType);
     }
 
-    //Javadoc inherited
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int maxHit(int rank) {
-        return 20 + (rank - 1) * 5;
+        return 50 + (rank - 1) * 5;
     }
 
-    //Javadoc inherited
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int maxDefense(int rank) {
-        return 20 + (rank - 1) * 5;
+        return 10 + (rank - 1) * 5;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int maxFight(int rank) {
-        return 20 + (rank - 1) * 5;
+        return 10 + (rank - 1) * 5;
     }
 
-    //Javadoc inherited
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int maxHealth(int rank) {
-        return 20 + (rank - 1) * 5;
+        return 10 + (rank - 1) * 5;
     }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void maxUpStats(int rank) {
         setHitPoints(maxHit(rank));
@@ -67,50 +80,68 @@ public class Luis extends AbstractHero implements ILuis {
         setHealthPoint(maxHealth(rank));
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void attackJump(Goomba opponent) {
-        if (allowAttack(100, 1))
+        if (allowAttack(100, 1)) {
             opponent.attackedByJumpLuis(this);
-
-        spendFightPoint(1);
+            spendFightPoint(1);
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void attackJump(Spiny opponent) {
-        if (allowAttack(100, 1))
+        if (allowAttack(100, 1)) {
             opponent.attackedByJumpLuis(this);
-        spendFightPoint(1);
-    }
-
-    @Override
-    public void attackHammer(Goomba opponent) {
-        spendFightPoint(2);
-        if (allowAttack(100, 2)) {
-            opponent.attackedByHammerLuis(this);
+            spendFightPoint(1);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void attackHammer(Spiny opponent) {
+    public void attackHammer(Goomba opponent, Integer seed) {
+        if (allowAttack(25, 2, seed))
+            opponent.attackedByHammerLuis(this);
         spendFightPoint(2);
-        if (allowAttack(100, 2)) {
+
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void attackHammer(Spiny opponent, Integer seed) {
+        if (allowAttack(25, 2, seed)) {
             opponent.attackedByHammerLuis(this);
         }
+        spendFightPoint(2);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void attackedByGoomba(Goomba goomba) {
         int damage = calculateDamage(goomba, this, 0.75);
         doHurt(damage);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void attackedByBoo(Boo Boo) {
         int damage = calculateDamage(Boo, this, 0.75);
         doHurt(damage);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void attackedBySpiny(Spiny spiny) {
         int damage = calculateDamage(spiny, this, 0.75);

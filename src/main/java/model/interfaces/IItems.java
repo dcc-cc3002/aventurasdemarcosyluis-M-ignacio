@@ -1,11 +1,14 @@
 package model.interfaces;
 
-import model.abstracts.AbstractHero;
 import model.enums.ItemsType;
 
+/**
+ * Items interface. Declare the common methods between existing items.
+ */
 public interface IItems {
+
     /**
-     * grants a Character Hero the effects of Items.
+     * Grants a Character Hero the effects of Items.
      *
      * @param hero blessed character
      */
@@ -13,6 +16,7 @@ public interface IItems {
 
     /**
      * Get a Type
+     *
      * @return Items Type
      */
     ItemsType getType();

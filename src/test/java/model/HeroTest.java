@@ -1,11 +1,9 @@
-import model.Chest;
+package model;
+
 import model.enums.HeroType;
-import model.Marcos;
 import model.enums.ItemsType;
-import model.Luis;
 
 import model.items.HoneySyrup;
-import model.items.Star;
 import model.items.RedMushroom;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +15,7 @@ public class HeroTest {
     private Luis testLuis;
     private Luis testLuisFull;
     private Marcos testMarcosFull;
-    private Star testStar;
+
     private HoneySyrup testHoney;
     private RedMushroom testMush;
     private Chest testChest;
@@ -29,7 +27,7 @@ public class HeroTest {
         testLuis = new Luis(1, 5, 5, 5, 5, HeroType.LUIS);
         testMarcosFull = new Marcos(4, HeroType.MARCOS);
         testLuisFull = new Luis(4, HeroType.LUIS);
-        testStar = new Star();
+
         testHoney = new HoneySyrup();
         testMush = new RedMushroom();
         testMush2 = new RedMushroom();
@@ -43,7 +41,6 @@ public class HeroTest {
         assertEquals(HeroType.MARCOS, testMarcosFull.getType());
         assertEquals(HeroType.LUIS, testLuisFull.getType());
 
-        assertEquals(ItemsType.STAR, testStar.getType());
         assertEquals(ItemsType.HONEY_SYRUP, testHoney.getType());
         assertEquals(ItemsType.RED_MUSHROOM, testMush.getType());
 
@@ -86,43 +83,28 @@ public class HeroTest {
         assertEquals(health + testMarcosFull.updateHealth(testMarcosFull.getRank(), 0.15), testMarcosFull.getHealthPoints());
     }
 
-    @Test
-    public void addItemsTest() {
-        testMarcos.addItem(testStar);
-        assertNotEquals(testMarcos.getItemIndex(testStar), -1);
-        testMarcos.addItem(testHoney);
-        assertNotEquals(testMarcos.getItemIndex(testHoney), -1);
-    }
-
-    @Test
-    public void heroSpendItemTest() {
-        testMarcos.addItem(testStar);
-        testMarcos.SpendItem(testStar);
-        assertTrue(testMarcos.getWeapons().isEmpty());
-    }
 
     @Test
     public void maxHealthTest() {
+        testChest.initial(2);
         testMarcos.setHealthPoint(9); //max_healthPoints = 10
         int hpm = testMarcos.getHealthPoints();
-        testMarcos.addItem(testMush);
-        testMarcos.SpendItem(testMush); // +1
+        testChest.spend(testMush,testMarcos);
         assertEquals(testMarcos.getHealthPoints(), hpm + (int) (0.10 * testMarcos.maxHealth()));
-        testMarcos.addItem((testMush));
-        testMarcos.SpendItem(testMush); // +1
+        testChest.spend(testMush,testMarcos);
         assertEquals(testMarcos.getHealthPoints(), testMarcos.maxHealth());
     }
 
     @Test
     public void maxFightTest() {
-        testMarcos.addItem(testHoney);
+        testChest.add(testHoney);
         int fpm = testMarcos.getFightPoint();
-        testMarcos.SpendItem(testHoney);
+        testChest.spend(testHoney,testMarcos);
 
         assertEquals(testMarcos.getFightPoint(), fpm + 3);
 
-        testMarcos.addItem(testHoney);
-        testMarcos.SpendItem(testHoney);
+        testChest.add(testHoney);
+        testChest.spend(testHoney,testMarcos);
         assertEquals(testMarcos.getFightPoint(), testMarcos.maxFight());
     }
 
@@ -145,7 +127,7 @@ public class HeroTest {
     @Test
     public void koTest() {
         testLuis.setHealthPoint(0);
-        testLuis.KO(testLuis);
+        testLuis.KO();
         assertEquals(testLuis.getHitPoints(), 0);
     }
 
@@ -165,7 +147,6 @@ public class HeroTest {
         testChest.remover(testHoney);
         assertEquals(testChest.getValue(testMush.getType()), 0);
         assertEquals(testChest.getValue(testHoney.getType()), 0);
-
     }
 
     @Test
@@ -188,7 +169,6 @@ public class HeroTest {
         testChest.spend(testMush,testMarcos);
         assertEquals(testChest.capacity(),1);
     }
-
 
     @Test
     public void removeItemChestTest() {

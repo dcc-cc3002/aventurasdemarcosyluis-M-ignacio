@@ -1,3 +1,5 @@
+package model;
+
 import model.*;
 import model.enums.HeroType;
 import model.enums.OpponentType;

@@ -6,53 +6,94 @@ import java.util.Hashtable;
 import model.enums.ItemsType;
 import model.interfaces.*;
 
-
+/**
+ * Chest that stores the items obtained during a game, which are
+ * removed when used. The trunk is shared between the main characters.
+ */
 public class Chest {
     private final Hashtable<ItemsType, Integer> itemChest;
-    private final ItemsType redMushroom = ItemsType.RED_MUSHROOM;
-    private final ItemsType HoneySyrup = ItemsType.HONEY_SYRUP;
+    private final ItemsType mush = ItemsType.RED_MUSHROOM;
+    private final ItemsType honey = ItemsType.HONEY_SYRUP;
 
-
+    /**
+     * Chest Constructor. Create a Chest Object.
+     */
     public Chest() {
         this.itemChest = new Hashtable<>(2);
     }
 
-    private Hashtable<ItemsType, Integer> getChest() {
+    /**
+     * get itemChest implemented by a hashtable.
+     *
+     * @return get itemChest
+     */
+    public Hashtable<ItemsType, Integer> getItemsChest() {
         return itemChest;
     }
 
+    /**
+     * quantity of the same item in inventory.
+     *
+     * @param type enter itemType
+     * @return item quantity available
+     */
     public int getValue(ItemsType type) {
-        if (getChest().get(type) == null) {
+        if (getItemsChest().get(type) == null) {
             return 0;
-        }return getChest().get(type);
+        }
+        return getItemsChest().get(type);
     }
 
+    /**
+     * Introduce a new item (key) to Chest.
+     *
+     * @param type  key chest
+     * @param value amount item
+     */
     public void putValue(ItemsType type, int value) {
-        getChest().put(type, value);
+        getItemsChest().put(type, value);
     }
 
+    /**
+     * Replaces the quantity of a specific item.
+     *
+     * @param type  item type
+     * @param value quantity of item
+     */
     public void replaceValue(ItemsType type, int value) {
-        getChest().replace(type, value);
+        getItemsChest().replace(type, value);
     }
 
-    public boolean search(IItems item) {
-        return getValue(item.getType()) != 0;
-    }
-
+    /**
+     * Put a quantity of starting items into inventory.
+     *
+     * @param n quantity of item
+     */
     public void initial(int n) {
-        getChest().put(redMushroom, n);
-        getChest().put(HoneySyrup, n);
+        getItemsChest().put(mush, n);
+        getItemsChest().put(honey, n);
     }
 
+    /**
+     * Total number of items in inventory.
+     *
+     * @return all items
+     */
     public int capacity() {
         int sum = 0;
-        Enumeration<Integer> numerate = getChest().elements();
+        Enumeration<Integer> numerate = getItemsChest().elements();
         while (numerate.hasMoreElements()) {
             sum = sum + numerate.nextElement();
         }
         return sum;
     }
 
+    /**
+     * add a new item to inventory. If the item does not exist, add
+     * the first item.
+     *
+     * @param item type Item
+     */
     public void add(IItems item) {
         int n = getValue(item.getType());
         if (n != 0) {
@@ -63,6 +104,12 @@ public class Chest {
         putValue(item.getType(), n);
     }
 
+    /**
+     * decreases the quantity of the selected item by one. If the
+     * quantity is 0, it keeps it.
+     *
+     * @param item type item
+     */
     public void remover(IItems item) {
         int n = getValue(item.getType());
         if (n != 0) {
@@ -70,10 +117,22 @@ public class Chest {
         }
     }
 
+    /**
+     * check if the inventory is empty.
+     *
+     * @return true if empty, false otherwise
+     */
     public boolean isEmpty() {
         return capacity() == 0;
     }
 
+    /**
+     * use an item from inventory on a hero. When used it
+     * is removed from the inventory for any other model.items.main character.
+     *
+     * @param item type item
+     * @param hero type hero
+     */
     public void spend(IItems item, IHero hero) {
         int n = getValue(item.getType());
         if (n != 0) {
@@ -81,4 +140,18 @@ public class Chest {
             hero.spendItem(item);
         }
     }
+
+    /*
+    public void printItems(){
+        int m = itemChest.get(mush);
+        int n = itemChest.get(honey);
+        Enumeration<ItemsType> numerate = getChest().keys();
+        while (numerate.hasMoreElements()){
+            ItemsType item = numerate.nextElement();
+            int nn = itemChest.get(item);
+            System.out.println("Cantidad de "+ item.toString() +" es "+nn);
+        }
+    }
+    */
+
 }
