@@ -2,7 +2,7 @@
 Se trabajo sobre el repositorio entregado en el curso. Para esto se creó un nuevo package "model" que contiene el código funcional y dentro de la carpeta test
 dos códigos para testear la funcionalidad de las clases Hero y Oppontent que implementan la totalidad del código útil.
 
-funcionamiento.
+funcionamiento general:
 
 -descargar el repositorio.
 
