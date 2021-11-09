@@ -107,7 +107,7 @@ public class Luis extends AbstractHero implements ILuis, Character {
      */
     @Override
     public void attackHammer(Goomba opponent, Integer seed) {
-        if (allowAttack(25, 2, seed))
+        if (allowAttack(75, 2, seed))
             opponent.attackedByHammerLuis(this);
         spendFightPoint(2);
 
@@ -117,7 +117,7 @@ public class Luis extends AbstractHero implements ILuis, Character {
      */
     @Override
     public void attackHammer(Spiny opponent, Integer seed) {
-        if (allowAttack(25, 2, seed)) {
+        if (allowAttack(75, 2, seed)) {
             opponent.attackedByHammerLuis(this);
         }
         spendFightPoint(2);
