@@ -24,7 +24,16 @@ public class GameController {
     private Character isNextPlayer;
     private final OpponentRandomFactory factory;
     private int stateBattle;
-    private int numEnemies;
+
+    public Chest getSharedChest() {
+        return sharedChest;
+    }
+
+    public void setSharedChest(Chest sharedChest) {
+        this.sharedChest = sharedChest;
+    }
+
+    private Chest sharedChest;
 
     /**
      * Controller constructor. Allows you to use the methods to use
@@ -119,8 +128,19 @@ public class GameController {
     public Character createHero(int rank, HeroType type) {
         IHero hero;
         hero = type.equals(HeroType.MARCOS) ? new Marcos(rank, type) : new Luis(rank, type);
-        getOrderOfPlayers().add(hero);
+        addWithinList(hero);
         return hero;
+    }
+
+    /**
+     * Add Character within trun list.
+     *
+     * @param c Character added
+     */
+    public void addWithinList(Character c) {
+        orderOfPlayers.add(c);
+        nextPlayer();
+        actualPlayer();
     }
 
     /**
@@ -143,7 +163,7 @@ public class GameController {
     public IOpponent addEnemies(int rank) {
         OpponentRandomFactory f = getFactory();
         IOpponent opponent = f.createOpponent(rank);
-        orderOfPlayers.add(opponent);
+        addWithinList(opponent);
         return opponent;
     }
 
@@ -153,7 +173,18 @@ public class GameController {
      * @return Chest object
      */
     public Chest addChest() {
-        return new Chest();
+        sharedChest = new Chest();
+        return sharedChest;
+    }
+
+    /**
+     * The same quantity of the items available in itemType is added.
+     *
+     * @param chest specific chest
+     * @param n     value initial
+     */
+    public void fillChestInitial(int n) {
+        sharedChest.initial(n);
     }
 
     /**
@@ -162,8 +193,8 @@ public class GameController {
      * @param chest specific chest
      * @return item of the chest
      */
-    public Hashtable<ItemsType, Integer> getItem(Chest chest) {
-        return chest.getItemsChest();
+    public Hashtable<ItemsType, Integer> getItem() {
+        return sharedChest.getItemsChest();
     }
 
     /**
@@ -173,8 +204,8 @@ public class GameController {
      * @param item  select item
      * @param hero  select hero
      */
-    public void spendItem(Chest chest, IItems item, IHero hero) {
-        chest.spend(item, hero);
+    public void spendItem(IItems item, IHero hero) {
+        sharedChest.spend(item, hero);
 
     }
 
@@ -198,18 +229,8 @@ public class GameController {
      * @param chest specific chest
      * @param item  select item
      */
-    public void addItem(Chest chest, IItems item) {
-        chest.add(item);
-    }
-
-    /**
-     * The same quantity of the items available in itemType is added.
-     *
-     * @param chest specific chest
-     * @param n     value initial
-     */
-    public void fillChestInitial(Chest chest, int n) {
-        chest.initial(n);
+    public void addItem(IItems item) {
+        sharedChest.add(item);
     }
 
 
@@ -218,8 +239,11 @@ public class GameController {
      * considering rotating rounds
      */
     public void actualPlayer() {
-        setIsPlaying(orderOfPlayers.get(getTurn() % orderOfPlayers.size()));
-
+        if(turn == 0){
+            setIsPlaying(orderOfPlayers.get(0));
+        }else {
+            setIsPlaying(getIsNextPlayer());
+        }
     }
 
     /**

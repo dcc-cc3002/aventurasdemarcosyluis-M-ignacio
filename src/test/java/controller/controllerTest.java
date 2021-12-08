@@ -56,31 +56,31 @@ public class controllerTest {
 
     @Test
     public void fillChestLvl1Test() {
-        controller.fillChestInitial(testChest, 3);
+        controller.fillChestInitial(3);
         assertEquals(testChest.getValue(testMush.getType()), 3);
         assertEquals(testChest.getValue(testHoney.getType()), 3);
     }
 
     @Test
     public void fillChestOtherLvlTest(){
-        controller.addItem(testChest,testMush);
-        controller.addItem(testChest,testHoney);
+        controller.addItem(testMush);
+        controller.addItem(testHoney);
         assertEquals(testChest.getValue(ItemsType.RED_MUSHROOM),1);
         assertEquals(testChest.getValue(ItemsType.HONEY_SYRUP),1);
     }
     @Test
     public void SpendItemTest() {
-        controller.addItem(testChest, testHoney);
+        controller.addItem(testHoney);
         int fpm = testMarcos.getFightPoint() - 3;
         testMarcos.setFightPoint(fpm);
-        testChest.spend(testHoney, testMarcos);
+        controller.spendItem(testHoney, testMarcos);
         assertEquals(testChest.capacity(), 0);
         assertEquals(fpm, testMarcos.getFightPoint() - 3);
     }
 
     @Test
     public void getAllItemChest(){
-        Hashtable<ItemsType, Integer> n = controller.getItem(testChest);
+        Hashtable<ItemsType, Integer> n = controller.getItem();
         assertEquals(n,testChest.getItemsChest());
     }
 
@@ -106,7 +106,6 @@ public class controllerTest {
 
     @Test
     public void selectPlayerTest() {
-        controller.actualPlayer();
         assertEquals(controller.getIsPlaying(), testMarcos);
         controller.nextPlayer();
         assertEquals(controller.getIsNextPlayer(), testLuis);
@@ -157,8 +156,7 @@ public class controllerTest {
 
     @Test
     public void executeBattle1Test(){
-        controller.actualPlayer();
-        controller.nextPlayer();
+        assertEquals(controller.getIsPlaying(),testMarcos);
         testMarcos.attackHammer(testGoomba, seed2);
         controller.finishTurn();
 
@@ -176,6 +174,16 @@ public class controllerTest {
         testSpiny.attackNormal(testMarcos);
         controller.finishTurn();
 
+        assertEquals(controller.getIsPlaying(),testMarcos);
+        testMarcos.attackJump(testBoo);
+        testMarcos.attackJump(testBoo);
+        controller.defeatedCharacter(testBoo);
+        controller.finishTurn();
+
+        assertEquals(controller.getIsPlaying(),testLuis);
+        controller.finishTurn();
+
+        assertEquals(controller.getIsPlaying(),testSpiny);
         assertEquals(controller.getStateBattle(),0);
     }
 
