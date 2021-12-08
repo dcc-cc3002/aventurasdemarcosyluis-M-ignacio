@@ -193,7 +193,7 @@ public class GameController {
      * @param chest specific chest
      * @return item of the chest
      */
-    public Hashtable<ItemsType, Integer> getItem() {
+    public  Hashtable<ItemsType, Integer> getItem() {
         return sharedChest.getItemsChest();
     }
 
