@@ -35,4 +35,13 @@ Se implementa la lógica de ataques mediante interfaces entre los personajes de 
 El controlador permite utilizar las funcionalidades del modelo. Se implementa un sistema de turnos rotativos. No se implementó el orden en que atacan los personajes por falta de una buena idea ?). En términos generales se crea las bases del controlador, para en una entrega posterior general fluidez en el juego.
 
 
+## Tercera entrega:
+
+Se implementa las fases de juego que permite filtrar las opciones que tienen los jugadores durante la partida. En cada una de las fases las acciones son limitadas de forma de que se permitan algunas acciones y otras sean detectadas como acciones invalidas. Al generar fases que dividan las acciones, permite manejar la lógica de juego y darle estabilidad al desarrollo de la partida.
+
+Para explicitar el movimiento de fases en los Test, las transiciones de fases principales se colocan directamente con los métodos del controlador que las implementan (referente a método tryTo...) y no como una lógica interna de otro método. Esto si bien le quita continuidad al juego, permite visualizar el estado de la fase en cada momento de la partida que es el enfoque principal de esta entrega. 
+
+Se implementa el Test de parte de una Partida. Como la Partida repite los escenarios de juego durante cinco rondas y el testeo para una batalla fue de por sí extenso, se implementan el funcionamiento completo de la primera ronda y se generan las condiciones para iniciar la segunda ronda. Es decir, se determina cuando la ronda acaba y quien es el ganador, si los héroes ganan se aumenta su nivel independiente si fueron derrotados o no y se incluyen en la siguiente ronda. Se generan nuevos oponentes aleatorios y se agregan los ítems al baúl compartido como recompensa por ganar la partida. Luego las siguientes rondas son una extensión del mismo Test.
+
+
 
