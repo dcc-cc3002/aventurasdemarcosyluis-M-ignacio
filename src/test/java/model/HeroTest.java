@@ -1,7 +1,10 @@
 package model;
 
-import model.enums.HeroType;
-import model.enums.ItemsType;
+import model.Hero.Luis;
+import model.Hero.Marcos;
+import model.Hero.HeroType;
+import model.items.Chest;
+import model.items.ItemsType;
 
 import model.items.HoneySyrup;
 import model.items.RedMushroom;

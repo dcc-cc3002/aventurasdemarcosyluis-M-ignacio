@@ -1,9 +1,7 @@
 package model.items;
 
 
-import model.enums.ItemsType;
-import model.interfaces.IHero;
-import model.interfaces.IItems;
+import model.Hero.IHero;
 
 
 /**

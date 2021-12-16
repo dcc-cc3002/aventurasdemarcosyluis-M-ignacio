@@ -1,14 +1,18 @@
 package controller;
 
-import model.*;
-import model.enums.HeroType;
-import model.enums.ItemsType;
-import model.enums.OpponentType;
-import model.interfaces.*;
-import model.interfaces.Character;
+import model.Hero.Marcos;
+import model.Opponent.Goomba;
+import model.Hero.Luis;
+import model.Opponent.Boo;
+import model.Opponent.Spiny;
+import model.Hero.HeroType;
+import model.items.Chest;
+import model.items.ItemsType;
+import model.Opponent.OpponentType;
+import model.Character;
+import model.items.IItems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import phases.InvalidMovementException;
 import phases.InvalidSelectException;
 
 import static org.junit.jupiter.api.Assertions.*;
