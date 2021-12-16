@@ -48,7 +48,7 @@ public class Boo extends AbstractOpponent implements IBoo {
      */
     @Override
     public int maxHit(int rank) {
-        return 10 + (rank - 1) * 3;
+        return 40 + (rank - 1) * 3;
     }
 
     /**
@@ -90,4 +90,6 @@ public class Boo extends AbstractOpponent implements IBoo {
     private void dodge() {
         this.doHurt(0);
     }
+
+
 }

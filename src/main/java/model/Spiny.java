@@ -50,7 +50,7 @@ public class Spiny extends AbstractOpponent implements ISpiny {
      */
     @Override
     public int maxHit(int rank) {
-        return 10 + (rank - 1) * 5;
+        return 50 + (rank - 1) * 5;
     }
 
     /**

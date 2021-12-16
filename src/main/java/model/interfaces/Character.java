@@ -1,5 +1,8 @@
 package model.interfaces;
 
+import model.enums.HeroType;
+import model.enums.OpponentType;
+
 /**
  * Interface implemented in the Abstract Characters class.
  */
@@ -61,17 +64,20 @@ public interface Character {
      */
     void setHealthPoint(int healthPoint);
 
-    /**
-     * get atributte type
-     *
-     * @return Character type
-     */
-    Object getType();
+
+
 
     /**
      * If A was defeated, his HitPoints is set to zero.
      */
     void KO();
+
+    /** se obtiene el tipo del objeto
+     *
+     * @return type del Objeto.
+     */
+    Object getType();
+
 
 
 }

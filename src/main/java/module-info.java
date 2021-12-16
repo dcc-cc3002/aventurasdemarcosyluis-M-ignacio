@@ -15,4 +15,5 @@ module aventurasdemarcoyluis{
     opens model.interfaces to javafx.fxml;
     exports model.factory;
     opens model.factory to javafx.fxml;
+
 }

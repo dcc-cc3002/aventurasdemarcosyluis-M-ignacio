@@ -1,6 +1,7 @@
 package model.interfaces;
 
 import model.Luis;
+import model.enums.OpponentType;
 
 /**
  * Common interface for all opponents. It contains their common logic.
@@ -12,5 +13,4 @@ public interface IOpponent extends Character {
      * @param luis Luis attacked
      */
     void attackNormal(Luis luis);
-
 }

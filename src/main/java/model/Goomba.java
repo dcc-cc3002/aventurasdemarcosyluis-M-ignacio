@@ -2,6 +2,7 @@ package model;
 
 import model.abstracts.AbstractOpponent;
 import model.enums.OpponentType;
+import model.interfaces.Character;
 import model.interfaces.IGoomba;
 
 /**
@@ -58,7 +59,7 @@ public class Goomba extends AbstractOpponent implements IGoomba {
      */
     @Override
     public int maxDefense(int rank) {
-        return 10 + (rank - 1) * 5;
+        return 5 + (rank - 1) * 5;
     }
 
     /**
@@ -111,4 +112,5 @@ public class Goomba extends AbstractOpponent implements IGoomba {
     public void attackNormal(Luis hero) {
         hero.attackedByGoomba(this);
     }
+
 }

@@ -1,6 +1,7 @@
 package model.abstracts;
 
 import model.interfaces.Character;
+import model.interfaces.IHero;
 
 
 /**

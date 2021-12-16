@@ -8,12 +8,15 @@ import model.interfaces.*;
 import model.interfaces.Character;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
-import java.util.ArrayList;
-import java.util.Hashtable;
+import phases.InvalidMovementException;
+import phases.InvalidSelectException;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+
+
 
 public class controllerTest {
     private GameController controller;
@@ -27,17 +30,17 @@ public class controllerTest {
     private IItems testMush;
     private IItems testHoney;
     private int seed2;
-    private int seed;
+    private int notSeed;
 
     @BeforeEach
     public void setUp() {
         seed2 = -9281;
-        seed = 109281;
+        notSeed = 109281;
         controller = new GameController();
         testMarcos = (Marcos) controller.createHero(1, HeroType.MARCOS); //+1
         testLuis = (Luis) controller.createHero(1, HeroType.LUIS); //+1
         testChest = controller.addChest();
-        controller.factoryPlantSeed(seed);
+        controller.factoryPlantSeed(notSeed);
         testBoo = (Boo) controller.addEnemies(1); //+1
         testGoomba = (Goomba) controller.addEnemies(1);//+1
         testSpiny = (Spiny) controller.addEnemies(1);//+1
@@ -69,7 +72,7 @@ public class controllerTest {
         assertEquals(testChest.getValue(ItemsType.HONEY_SYRUP),1);
     }
     @Test
-    public void SpendItemTest() {
+    public void SpendItemTest() throws  InvalidSelectException {
         controller.addItem(testHoney);
         int fpm = testMarcos.getFightPoint() - 3;
         testMarcos.setFightPoint(fpm);
@@ -86,9 +89,8 @@ public class controllerTest {
 
     @Test
     public void getAllPlayerTest(){
-        ArrayList<Character> n = controller.getOrderOfPlayers();
+        List n = controller.getOrderOfPlayers();
         assertEquals(n.size(),5);
-
         assertEquals(n.get(0),testMarcos);
         assertEquals(n.get(1),testLuis);
         assertEquals(n.get(2),testBoo);
@@ -100,7 +102,7 @@ public class controllerTest {
     public void defeatedEnemyTest(){
         testMarcos.attackJump(testSpiny);
         testSpiny.setHealthPoint(0); // se supone iterar el ataque hasta hacer sus punto de vida 0
-        controller.defeatedCharacter(testSpiny);
+        controller.defeatedCharacter();
         assertFalse(controller.existCharacter(testSpiny));
     }
 
@@ -123,12 +125,11 @@ public class controllerTest {
 
     @Test
     public void completeTurnRoundTest(){
-        controller.actualPlayer();
         assertEquals(controller.getIsPlaying(),testMarcos);
         controller.finishTurn(); //end turn marcos
         controller.finishTurn(); //end turn Luis
         controller.finishTurn(); //end turn Boo
-        controller.finishTurn(); // end turn goomba
+        controller.finishTurn(); // end turn Goomba
         assertEquals(controller.getIsPlaying(),testSpiny);
         controller.finishTurn();
 
@@ -160,31 +161,25 @@ public class controllerTest {
         testMarcos.attackHammer(testGoomba, seed2);
         controller.finishTurn();
 
-        assertEquals(controller.getIsPlaying(),testLuis);
+
+
         testLuis.attackHammer(testGoomba, seed2);
-        controller.defeatedCharacter(testGoomba);
+        controller.defeatedCharacter();
         controller.finishTurn();
 
-        assertEquals(controller.getIsPlaying(),testBoo);
+
         testBoo.attackNormal(testLuis);
-        controller.defeatedCharacter(testLuis);
+        controller.defeatedCharacter();
         controller.finishTurn();
 
-        assertEquals(controller.getIsPlaying(),testSpiny);
         testSpiny.attackNormal(testMarcos);
         controller.finishTurn();
 
         assertEquals(controller.getIsPlaying(),testMarcos);
         testMarcos.attackJump(testBoo);
         testMarcos.attackJump(testBoo);
-        controller.defeatedCharacter(testBoo);
+        controller.defeatedCharacter();
         controller.finishTurn();
-
-        assertEquals(controller.getIsPlaying(),testLuis);
-        controller.finishTurn();
-
-        assertEquals(controller.getIsPlaying(),testSpiny);
-        assertEquals(controller.getStateBattle(),0);
     }
 
 

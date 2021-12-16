@@ -155,4 +155,5 @@ public class Marcos extends AbstractHero implements IMarcos, Character {
         int damage = calculateDamage(spiny, this, 0.75);
         doHurt(damage);
     }
+
 }

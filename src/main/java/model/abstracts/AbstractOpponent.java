@@ -44,6 +44,7 @@ public abstract class AbstractOpponent extends AbstractCharacters implements IOp
      *
      * @return Opponent Type
      */
+    @Override
     public OpponentType getType() {
         return type;
     }
