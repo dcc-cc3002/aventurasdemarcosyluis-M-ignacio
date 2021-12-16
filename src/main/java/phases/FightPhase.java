@@ -1,9 +1,13 @@
 package phases;
 
-import model.*;
-import model.enums.HeroType;
-import model.interfaces.IHero;
-import model.interfaces.IOpponent;
+import model.Hero.Marcos;
+import model.Opponent.Goomba;
+import model.Hero.Luis;
+import model.Opponent.Boo;
+import model.Opponent.Spiny;
+import model.Hero.HeroType;
+import model.Hero.IHero;
+import model.Opponent.IOpponent;
 
 /**
  * Clase FightPhase, corresponde a una de las fases del juego.

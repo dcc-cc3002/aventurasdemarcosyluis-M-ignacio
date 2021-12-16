@@ -1,5 +1,5 @@
 package phases;
-import model.interfaces.IHero;
+import model.Hero.IHero;
 import java.util.Random;
 
 /**

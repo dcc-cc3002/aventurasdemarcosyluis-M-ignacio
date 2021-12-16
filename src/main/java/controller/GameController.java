@@ -1,14 +1,17 @@
 package controller;
 
-import model.*;
-import model.enums.HeroType;
-import model.enums.ItemsType;
-import model.enums.OpponentType;
+import model.Hero.IHero;
+import model.Hero.Marcos;
+import model.Opponent.Goomba;
+import model.Hero.Luis;
+import model.Opponent.Boo;
+import model.Opponent.IOpponent;
+import model.Opponent.Spiny;
+import model.Hero.HeroType;
+import model.items.*;
+import model.Opponent.OpponentType;
 import model.factory.OpponentRandomFactory;
-import model.interfaces.*;
-import model.interfaces.Character;
-import model.items.HoneySyrup;
-import model.items.RedMushroom;
+import model.Character;
 import phases.*;
 
 import java.util.*;

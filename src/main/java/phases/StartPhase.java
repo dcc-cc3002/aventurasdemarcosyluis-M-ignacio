@@ -1,6 +1,6 @@
 package phases;
 
-import model.interfaces.IHero;
+import model.Hero.IHero;
 
 /**
  * clase StartPhase, es una fase de juego.

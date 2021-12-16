@@ -1,8 +1,8 @@
 package phases;
 
 import controller.GameController;
-import model.interfaces.IHero;
-import model.interfaces.IOpponent;
+import model.Hero.IHero;
+import model.Opponent.IOpponent;
 
 /**
  * Clase Phase. Permite controlar las acciones que se permiten para cada jugador y en cada

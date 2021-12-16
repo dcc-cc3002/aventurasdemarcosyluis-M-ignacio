@@ -1,10 +1,10 @@
 package model.factory;
 
-import model.Boo;
-import model.Goomba;
-import model.Spiny;
-import model.enums.OpponentType;
-import model.interfaces.IOpponent;
+import model.Opponent.Boo;
+import model.Opponent.Goomba;
+import model.Opponent.Spiny;
+import model.Opponent.OpponentType;
+import model.Opponent.IOpponent;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
 package model.factory;
 
-import model.interfaces.IOpponent;
+import model.Opponent.IOpponent;
 
 /**
  * interface creator. Declares the createOpponent method, which is implemented

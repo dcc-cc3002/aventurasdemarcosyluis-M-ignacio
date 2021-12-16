@@ -1,6 +1,6 @@
 package phases;
-import model.interfaces.IHero;
-import model.interfaces.IOpponent;
+import model.Hero.IHero;
+import model.Opponent.IOpponent;
 
 /**
  * clase WaitBattlePhase, correspondde a una fase de juego.

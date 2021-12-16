@@ -1,7 +1,9 @@
 package model;
 
-import model.*;
-import model.enums.OpponentType;
+import model.Opponent.Goomba;
+import model.Opponent.Boo;
+import model.Opponent.Spiny;
+import model.Opponent.OpponentType;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;

@@ -1,11 +1,16 @@
 package Phase;
 
+import model.Hero.Marcos;
+import model.Opponent.Goomba;
+import model.Hero.Luis;
+import model.Opponent.Boo;
+import model.Opponent.Spiny;
 import controller.GameController;
-import model.*;
-import model.enums.HeroType;
-import model.enums.ItemsType;
-import model.interfaces.Character;
-import model.interfaces.IItems;
+import model.Hero.HeroType;
+import model.items.Chest;
+import model.items.ItemsType;
+import model.Character;
+import model.items.IItems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import phases.*;
