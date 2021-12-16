@@ -3,6 +3,7 @@ package model;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import controller.GameController;
 import model.enums.ItemsType;
 import model.interfaces.*;
 
@@ -14,6 +15,7 @@ public class Chest {
     private final Hashtable<ItemsType, Integer> itemChest;
     private final ItemsType mush = ItemsType.RED_MUSHROOM;
     private final ItemsType honey = ItemsType.HONEY_SYRUP;
+
 
     /**
      * Chest Constructor. Create a Chest Object.
@@ -140,18 +142,4 @@ public class Chest {
             hero.spendItem(item);
         }
     }
-
-    /*
-    public void printItems(){
-        int m = itemChest.get(mush);
-        int n = itemChest.get(honey);
-        Enumeration<ItemsType> numerate = getChest().keys();
-        while (numerate.hasMoreElements()){
-            ItemsType item = numerate.nextElement();
-            int nn = itemChest.get(item);
-            System.out.println("Cantidad de "+ item.toString() +" es "+nn);
-        }
-    }
-    */
-
 }

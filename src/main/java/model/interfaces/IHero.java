@@ -86,4 +86,9 @@ public interface IHero extends Character {
      * @return Hero Type
      */
     HeroType getType();
+
+    /**
+     * se aumenta en nivel de los hero de la partida
+     */
+    void lvlUp();
 }

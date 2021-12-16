@@ -2,6 +2,7 @@ package model.abstracts;
 
 import model.enums.HeroType;
 import model.interfaces.Character;
+import model.interfaces.IHero;
 import model.interfaces.IItems;
 
 import java.util.Random;
@@ -9,7 +10,7 @@ import java.util.Random;
 /**
  * CLass that define constructor and methods implemented by Hero object.
  */
-public abstract class AbstractHero extends AbstractCharacters implements model.interfaces.IHero, Character {
+public abstract class AbstractHero extends AbstractCharacters implements IHero, Character {
     private final HeroType type;
     private int fightPoint;
 
@@ -91,6 +92,7 @@ public abstract class AbstractHero extends AbstractCharacters implements model.i
     /**
      * Increase character level and his stats.
      */
+    @Override
     public void lvlUp() {
         setRank(getRank() + 1);
         upStats(getRank());
